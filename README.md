@@ -1,8 +1,20 @@
-# React + Vite
+# MediShop UI using React
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+1. This is a UI design of the rest API I'm creating with the help of Spring boot repsitory is already present on my profile.
+2. I'm creating a full stack web application.
+3. This is the front UI code.
+4. I have created UI design for small devices till now I am still working on it.
 
-Currently, two official plugins are available:
+### Technologies I'm using for Frontend
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+1. React JS
+2. Tailwind CSS
+3. Axios
+4. React Router
+
+### Tools
+
+1. VS Code
+2. Node JS
+3. Gitbash
+4. FireFox Developer Edition
