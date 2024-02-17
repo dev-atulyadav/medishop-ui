@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import Login from "../components/Login";
-
-export default function Auth({ auth,handleForms }) {
-  return auth ? (
+import AuthContext from "../context/form/AuthContext";
+export default function Auth({ handleForms }) {
+  const value = useContext(AuthContext);
+  return value.auth ? (
     <section className="h-screen w-screen flex justify-center items-center bg-[#00000033] backdrop-blur-sm p-4 absolute top-0">
-      {auth ? <Login handleForms={handleForms}/> : <></>}
+      {value.auth ? <Login /> : <></>}
     </section>
   ) : (
     <></>

@@ -1,14 +1,15 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Header from "../components/Header";
 import Auth from "./Auth";
 import Section from "../components/Section";
+import Footer from "../components/Footer";
 
 export default function Home() {
   const [data, setData] = useState([
     {
       image:
         "https://images.news18.com/ibnlive/uploads/2023/02/epharmacy-online-drugs-167608885416x9.png",
-      para: "Buy 100% genuine & cheap durgs & medicines at Medi-Shop",
+      para: "Buy 100% genuine & cheap durgs & medicines at Medi-Shop.",
       btn: ["Order Now", () => {}, "self-start"],
     },
     {
@@ -17,18 +18,20 @@ export default function Home() {
       para: "One & only India largest pharmacy store...",
       btn: ["Learn More", () => {}, "self-end"],
     },
+    {
+      image:
+        "https://images.pexels.com/photos/2280571/pexels-photo-2280571.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+      para: "Buy best medicines tested in best laboratories from best sellers.",
+      btn: ["Explore now", () => {}, "self-start"],
+    },
   ]);
-  const [auth, setAuth] = useState(false);
-  const handleForms = (e) => {
-    let text = e.target.textContent;
-    setAuth(!auth);
-    console.log(auth);
-  };
+
   return (
     <>
       <Header />
       <Section data={data} />
-      <Auth auth={auth} handleForms={handleForms} />
+      <Auth />
+      <Footer />
     </>
   );
 }

@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import Close from "../assets/images/close.png";
 import { Link } from "react-router-dom";
+import MenuContext from "../context/menu/MenuContext";
 
-export default function Nav({ navLinks, handleMenu}) {
+export default function Nav({ navLinks }) {
+  const handleMenu = useContext(MenuContext).handleMenu;
   return (
     <nav className="absolute z-10 right-0 top-0 h-screen w-full bg-[#afaeae2b] backdrop-blur-sm flex justify-end">
       <div className=" h-full flex flex-col gap-10 bg-[#00000037] backdrop-blur-sm p-4">
@@ -17,7 +19,7 @@ export default function Nav({ navLinks, handleMenu}) {
             <Link
               to={value.url}
               key={value.name}
-              onClick={value.fun}
+              onClick={value.func}
               className="p-1.5 transition-all rounded-full"
             >
               <img src={value.icon} className="h-7" alt="" />

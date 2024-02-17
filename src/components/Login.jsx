@@ -1,13 +1,18 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import Close from '../assets/images/close.png'
+import Close from "../assets/images/close.png";
+import AuthContext from "../context/form/AuthContext";
 
-export default function Login({handleForms}) {
+export default function Login() {
+  const value = useContext(AuthContext);
   return (
     <div className=" rounded-xl w-full h-72 text-white self-center flex flex-col justify-center items-center bg-[#62626249] p-4 gap-4 relative border-2">
-    <button onClick={handleForms} className="h-6 right-4 top-4 absolute transition-all hover:scale-75 rounded-full">
-    <img src={Close} className="h-full" alt="" />
-    </button>
+      <button
+        onClick={value.handleForms}
+        className="h-6 right-4 top-4 absolute transition-all hover:scale-75 rounded-full"
+      >
+        <img src={Close} className="h-full" alt="" />
+      </button>
       <h3 className="text-2xl font-bold self-start">Login Now</h3>
       <form className="flex h- w-full flex-col justify-center items-center gap-4">
         <input

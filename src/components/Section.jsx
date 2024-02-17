@@ -3,13 +3,19 @@ import Bg_1 from "../assets/images/bg-1.jpg";
 
 export default function Section({ data }) {
   return (
-    <section className="w-full p-4 flex flex-col justify-center items-center gap-4">
+    <section
+      id="main"
+      className="w-full p-4 flex flex-col justify-center items-center gap-4"
+    >
       {data.map((value) => (
-        <article key={value.btn[0]} className=" rounded-xl w-full flex flex-col justify-start items-center gap-4">
+        <article
+          key={value.btn[0]}
+          className=" rounded-xl w-full flex flex-col justify-start items-center gap-4"
+        >
           <main>
             <img src={value.image} className="rounded-xl" alt="" />
           </main>
-          <main className="bg-slate-700 text-white text-xl rounded-xl p-4 font-semibold flex flex-col items-start gap-4">
+          <main className="bg-slate-700 w-full text-white text-xl rounded-xl p-4 font-semibold flex flex-col items-start gap-4">
             <h1>{value.para}</h1>
             <button
               onClick={value.btn[1]}
