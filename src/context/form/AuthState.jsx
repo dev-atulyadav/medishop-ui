@@ -4,11 +4,18 @@ import MenuContext from "../menu/MenuContext";
 
 const AuthState = (props) => {
   const handleMenu = useContext(MenuContext).handleMenu;
-  const [auth, setAuth] = useState(false);
+  const [auth, setAuth] = useState("");
   const handleForms = (e) => {
     e.preventDefault();
+    let target = e.target.textContent;
     handleMenu(auth);
-    setAuth(!auth);
+    if (target == "") setAuth(target);
+    if (auth == "" || target === "Login") {
+      setAuth("Login");
+    }
+    if (target == "Register") {
+      setAuth(target);
+    }
   };
   return (
     <AuthContext.Provider value={{ auth, handleForms }}>
