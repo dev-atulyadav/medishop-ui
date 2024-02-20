@@ -11,7 +11,7 @@ export default function Footer() {
     { name: "x", icon: X, url: "" },
   ]);
   return (
-    <footer className="bg-slate-700 rounded-t-xl text-white p-4 flex flex-col gap-4 justify-center items-center">
+    <footer className="bg-slate-700 rounded-t-xl text-white p-4 flex flex-col gap-4 justify-center items-center mt-6">
       <div className="text-lg w-full uppercase font-bold flex flex-col gap-2">
         <h3>Get Connected with us.</h3>
         <div className="flex gap-4">
@@ -27,7 +27,7 @@ export default function Footer() {
         </div>
       </div>
       <div className="font-semibold flex gap-4 justify-center items-center">
-        <Link to="/">Home</Link>
+        <Link to="/home">Home</Link>
         <Link to="/about">About</Link>
         <Link to="/service">Service</Link>
       </div>

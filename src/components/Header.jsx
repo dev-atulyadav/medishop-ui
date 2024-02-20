@@ -3,7 +3,7 @@ import Icon from "../assets/images/icon.png";
 import Menu from "../assets/images/menu.png";
 import Nav from "./Nav";
 import Home from "../assets/images/home.png";
-import Help from "../assets/images/support.png";
+import Cart from "../assets/images/cart.png";
 import About from "../assets/images/about.png";
 import User from "../assets/images/user.png";
 import AuthContext from "../context/form/AuthContext";
@@ -13,9 +13,9 @@ export default function Header() {
   const value = useContext(AuthContext);
   const b = useContext(MenuContext);
   const [navLinks, setNavLinks] = useState([
-    { name: "Home", url: "/home", icon: Home },
-    { name: "About", url: "/about", icon: About },
-    { name: "Help", url: "/help&support", icon: Help },
+    { name: "Home", url: "/home",func:b.handleMenu, icon: Home },
+    { name: "About", url: "/about",func:b.handleMenu, icon: About },
+    { name: "Cart", url: "/cart",func:b.handleMenu, icon: Cart },
     {
       name: "User",
       url: "",
