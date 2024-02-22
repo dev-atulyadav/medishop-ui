@@ -14,10 +14,10 @@ export default function ProductBox() {
             Nutrigro By Complan Protein | 2 to 6 Years | Flavour Badam Kheer
           </h3>
           <span className="flex justify-center items-center gap-2 uppercase text-white">
-            <button className="px-2 p-2 w-2/4 bg-blue-500 rounded-lg">
+            <button className="px-2 p-2 w-2/4 border-[1px]  border-blue-500 hover:bg-blue-500 hover:text-white text-blue-500 rounded-lg">
               Add to cart
             </button>
-            <button className="px-2 p-2 w-2/4 bg-green-500 rounded-lg">
+            <button className="px-2 p-2 w-2/4 border-[1px] border-green-500 hover:bg-green-500 text-green-500 hover:text-white rounded-lg">
               Buy now
             </button>
           </span>
