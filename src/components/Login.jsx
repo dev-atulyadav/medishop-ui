@@ -6,12 +6,12 @@ import Input from "./Input";
 
 export default function Login() {
   const value = useContext(AuthContext);
-  const [inputs, setstate] = useState([
+  const [inputs] = useState([
     { value: "email", type: "email" },
     { value: "password", type: "password" },
   ]);
   return (
-    <div className=" rounded-xl w-full h-72 text-white self-center flex flex-col justify-center items-center bg-[#62626249] p-4 gap-4 relative border-2">
+    <div className=" rounded-xl w-96 h-72 sm:w-80 text-white self-center flex flex-col justify-center items-center bg-[#62626249] p-4 gap-4 relative border-2">
       <button
         onClick={value.handleForms}
         className="h-6 right-4 top-4 absolute transition-all hover:scale-75 rounded-full"

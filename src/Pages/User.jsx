@@ -12,10 +12,12 @@ export default function User() {
   return (
     <>
       <Header />
+      <div className="mt-20">
       <FilterBar />
       {!showFilter && <UserHome />}
       {showFilter && <FilterBox />}
       <PageIndexing />
+      </div>
       <Footer />
     </>
   );

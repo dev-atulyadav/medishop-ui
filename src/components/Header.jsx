@@ -25,7 +25,7 @@ export default function Header() {
   ]);
 
   return (
-    <header className=" bg-green-400 flex justify-between items-center px-4 py-2 relative">
+    <header className=" bg-green-400 flex justify-between items-center px-4 py-2 fixed w-full top-0">
       <div className="flex justify-center items-center text-xl uppercase font-bold gap-2 text-white cursor-pointer">
         <img src={Icon} className="h-14" alt="" />
         <h2>Medi-Shop</h2>

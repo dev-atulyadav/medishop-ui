@@ -3,7 +3,7 @@ import React from "react";
 export default function ProductBox() {
   return (
     <main className="flex flex-col justify-center items-center gap-2 p-2">
-      <div className="flex justify-between items-center p-2 rounded-xl shadow-inset-xl w-full bg-white">
+      <div className="flex justify-between items-center p-2 rounded-xl shadow-inset-xl w-full bg-white sm:flex-col">
         <img
           src="https://onemg.gumlet.io/l_watermark_346,w_690,h_700/a_ignore,w_690,h_700,c_pad,q_auto,f_auto/cropped/n5yq2ne4k31ae9najbli.png"
           className="h-28"

@@ -5,7 +5,7 @@ export default function Section({ data }) {
   return (
     <section
       id="main"
-      className="w-full p-4 flex flex-col justify-center items-center gap-4"
+      className="w-full p-4 flex flex-col justify-center items-center gap-4 mt-20"
     >
       {data.map((value) => (
         <article

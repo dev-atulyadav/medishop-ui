@@ -5,13 +5,16 @@ import "./index.css";
 import AuthState from "./context/form/AuthState";
 import MenuState from "./context/menu/MenuState";
 import FilterState from "./context/filter/FilterState";
+import UserState from "./context/user/UserState.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <MenuState>
-    <AuthState>
-      <FilterState>
-        <App />
-      </FilterState>
-    </AuthState>
-  </MenuState>
+  <UserState>
+    <MenuState>
+      <AuthState>
+        <FilterState>
+          <App />
+        </FilterState>
+      </AuthState>
+    </MenuState>
+  </UserState>
 );
