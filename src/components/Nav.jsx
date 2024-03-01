@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import Close from "../assets/images/close.png";
+import { AiOutlineCloseCircle } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import MenuContext from "../context/menu/MenuContext";
 
@@ -10,19 +10,20 @@ export default function Nav({ navLinks }) {
       <div className=" h-full flex flex-col gap-10 bg-[#00000037] backdrop-blur-sm p-4">
         <button
           onClick={handleMenu}
-          className=" p-1.5 rounded-full transition-all"
+          className=" p-1.5 text-3xl text-white hover:text-red-500 rounded-full transition-all"
         >
-          <img src={Close} className="h-7" alt="" />
+          <AiOutlineCloseCircle/>
         </button>
-        <div className="flex flex-col gap-6 h-full">
+        <div className="flex flex-col gap-6 h-full text-white text-3xl">
           {navLinks.map((value) => (
             <Link
               to={value.url}
               key={value.name}
               onClick={value.func}
               className="p-1.5 transition-all rounded-full"
-            >
-              <img src={value.icon} className="h-7" alt="" />
+            ><span className="hover:text-gray-400">
+              {value.icon}
+            </span>
             </Link>
           ))}
         </div>

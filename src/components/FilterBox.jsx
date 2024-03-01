@@ -1,5 +1,4 @@
 import React, { useContext, useState } from "react";
-import Filter from "../assets/images/filter.png";
 import FilterContext from "../context/filter/FilterContext";
 export default function FilterBox() {
   const [checkBoxs] = useState([

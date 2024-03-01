@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import Edit from "../assets/images/edit.png";
+import { TbEdit } from "react-icons/tb";
+
 export default function UserProfile() {
   const [edit, setEdit] = useState(false);
   const handleEdits = () => {
@@ -8,7 +9,7 @@ export default function UserProfile() {
   };
 
   return (
-    <section className="w-full p-3">
+    <section className="w-full p-3 mt-20">
       <article className="h-full w-full shadow-inset-3xl rounded-xl p-4 flex flex-col items-center justify-start">
         <form className="flex justify-center items-center flex-col gap-4">
           <img
@@ -19,18 +20,17 @@ export default function UserProfile() {
           <h3 className="text-2xl font-bold">Hello World!</h3>
           <div className="flex gap-2 p-4 w-full border-b-2 border-gray-300 rounded-xl relative">
             <label htmlFor="email">Email:</label>
-            <input onChange={()=>{}}
+            <input
+              onChange={() => {}}
               type="email"
               value={edit ? null : "world@gmail.com"}
               name=""
               id="email"
             />
-            <label htmlFor={edit &&"email"}>
-              <img
-                src={Edit}
+            <label htmlFor={edit && "email"}>
+              <TbEdit
                 onClick={handleEdits}
-                className="h-5 absolute right-2"
-                alt=""
+                className="text-2xl text-gray-500 absolute right-2"
               />
             </label>
           </div>
@@ -43,7 +43,7 @@ export default function UserProfile() {
               name=""
               id="contact"
             />
-            <img src={Edit} className="h-5 absolute right-2" alt="" />
+            <TbEdit className="text-2xl text-gray-500 absolute right-2" />
           </div>
           <div className="flex gap-2 p-4 w-full border-b-2 border-gray-300 rounded-xl relative">
             <label htmlFor="dob">DOB:</label>
@@ -54,7 +54,7 @@ export default function UserProfile() {
               name=""
               id="dob"
             />
-            <img src={Edit} className="h-5 absolute right-2" alt="" />
+            <TbEdit className="text-2xl text-gray-500 absolute right-2" />
           </div>
           <div className="flex gap-2 p-4 w-full border-b-2 border-gray-300 rounded-xl relative">
             <label htmlFor="email">Address:</label>
@@ -65,7 +65,7 @@ export default function UserProfile() {
               name=""
               id="address"
             />
-            <img src={Edit} className="h-5 absolute right-2" alt="" />
+            <TbEdit className="text-2xl text-gray-500 absolute right-2" />
           </div>
           <span className="flex gap-8">
             <button className="px-7 py-2 hover:bg-blue-500 border-[1px] border-blue-500 hover:text-white text-blue-500 font-semibold uppercase rounded-xl">

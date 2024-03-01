@@ -1,5 +1,4 @@
 import React from "react";
-import Bg_1 from "../assets/images/bg-1.jpg";
 
 export default function Section({ data }) {
   return (
@@ -15,7 +14,7 @@ export default function Section({ data }) {
           <main className="sm:h-80 w-full sm:flex sm:justify-center sm:items-end overflow-hidden rounded-xl">
             <img src={value.image} className="w-full aspect-video" alt="" />
           </main>
-          <main className="bg-slate-700 w-full text-white text-xl rounded-xl p-4 font-semibold flex flex-col items-start gap-4 sm:absolute sm:hover:backdrop-blur-[2px] sm:bg-[#00000091] sm:h-full sm:justify-center sm:items-center sm:text-3xl cursor-pointer">
+          <main className="bg-slate-600 w-full text-white text-xl rounded-xl p-4 font-semibold flex flex-col items-start gap-4 sm:absolute sm:hover:backdrop-blur-[2px] sm:bg-[#00000091] sm:h-full sm:justify-center sm:items-center sm:text-3xl cursor-pointer sm:gap-8">
             <h1>{value.para}</h1>
             <button
               onClick={value.btn[1]}
