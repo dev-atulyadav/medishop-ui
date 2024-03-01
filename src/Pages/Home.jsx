@@ -5,11 +5,11 @@ import Section from "../components/Section";
 import Footer from "../components/Footer";
 
 export default function Home() {
-  const [data, setData] = useState([
+  const [data] = useState([
     {
       image:
         "https://images.news18.com/ibnlive/uploads/2023/02/epharmacy-online-drugs-167608885416x9.png",
-      para: "Buy 100% genuine & cheap durgs & medicines at Medi-Shop.",
+      para: "Buy 100% genuine & cheap durgs & medicines at MediShop.",
       btn: ["Order Now", () => {}, "self-start"],
     },
     {

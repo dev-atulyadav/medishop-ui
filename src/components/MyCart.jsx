@@ -2,7 +2,7 @@ import React from "react";
 
 export default function MyCart() {
   return (
-    <section className="h-screen w-full p-3 flex justify-center items-center">
+    <section className="h-screen w-full p-3 flex justify-center items-center mt-20">
       <article className="h-full w-full shadow-inset-xl rounded-xl p-3 text-2xl font-semibold uppercase bg-gray-100 flex flex-col gap-4 justify-start items-center overflow-scroll">
         <h2 className="bg-white w-full sm:p-3 p-2 rounded-xl shadow-inset-xl text-center">
           My Cart

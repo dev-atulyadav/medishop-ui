@@ -15,7 +15,7 @@ export default function SiteDetails() {
         esse tempore? Obcaecati tempora consequuntur ea incidunt!`},
     ]
   return (
-    <section className='p-2'>
+    <section className='p-2 mt-20'>
       <article className='bg-gray-100 rounded-xl h-full shadow-inset-xl p-4 flex flex-col justify-start items-center gap-2'>
       <img src="https://images.pexels.com/photos/105028/pexels-photo-105028.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" className='rounded-xl' alt="" />
       <ShortDetails details={details} />
