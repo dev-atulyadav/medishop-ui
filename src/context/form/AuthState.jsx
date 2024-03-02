@@ -1,6 +1,7 @@
-import React, { useContext, useState } from "react";
-import AuthContext from "./AuthContext";
-import MenuContext from "../menu/MenuContext";
+import React, { createContext, useContext, useState } from "react";
+import { MenuContext } from "../menu/MenuState";
+
+export const AuthContext = createContext();
 
 const AuthState = (props) => {
   const handleMenu = useContext(MenuContext).handleMenu;
@@ -15,6 +16,21 @@ const AuthState = (props) => {
     }
     if (target == "Register") {
       setAuth(target);
+    }
+  };
+  const validateInputs = (type, data) => {
+    if (type === "email") {
+      let alpha = /^[a-z]/.test(data);
+      let num = /[a-z0-9]+/;
+      let specChar = /[^!@#$%^&*()_+=`-~{}|:"?><\]\[.,]+[@]{1,1}/;
+      let provider = /(gmail|yahoo|outlook){1,1}[.](org|com|in|co)/;
+      if (alpha && specChar && provider && num) {
+        return true;
+      } else if (alpha && specChar && provider && !num) {
+        return true;
+      } else {
+        return false;
+      }
     }
   };
   return (

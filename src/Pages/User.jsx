@@ -5,7 +5,7 @@ import Footer from "../components/Footer";
 import FilterBar from "../components/FilterBar";
 import PageIndexing from "../components/PageIndexing";
 import FilterBox from "../components/FilterBox";
-import FilterContext from "../context/filter/FilterContext";
+import { FilterContext } from "../context/filter/FilterState";
 
 export default function User() {
   const { showFilter } = useContext(FilterContext);
@@ -13,10 +13,10 @@ export default function User() {
     <>
       <Header />
       <div className="mt-20">
-      <FilterBar />
-      {!showFilter && <UserHome />}
-      {showFilter && <FilterBox />}
-      <PageIndexing />
+        <FilterBar />
+        {!showFilter && <UserHome />}
+        {showFilter && <FilterBox />}
+        <PageIndexing />
       </div>
       <Footer />
     </>

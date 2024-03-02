@@ -1,6 +1,6 @@
-import { useState } from "react";
-import MenuContext from "./MenuContext";
+import { createContext, useState } from "react";
 
+export const MenuContext = createContext();
 const MenuState = (props) => {
   const [b, setB] = useState(false);
   const handleMenu = (e) => {

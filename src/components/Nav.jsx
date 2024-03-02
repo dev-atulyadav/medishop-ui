@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 import { Link } from "react-router-dom";
-import MenuContext from "../context/menu/MenuContext";
+import { MenuContext } from "../context/menu/MenuState";
 
 export default function Nav({ navLinks }) {
   const handleMenu = useContext(MenuContext).handleMenu;
@@ -12,7 +12,7 @@ export default function Nav({ navLinks }) {
           onClick={handleMenu}
           className=" p-1.5 text-3xl text-white hover:text-red-500 rounded-full transition-all"
         >
-          <AiOutlineCloseCircle/>
+          <AiOutlineCloseCircle />
         </button>
         <div className="flex flex-col gap-6 h-full text-white text-3xl">
           {navLinks.map((value) => (
@@ -21,9 +21,8 @@ export default function Nav({ navLinks }) {
               key={value.name}
               onClick={value.func}
               className="p-1.5 transition-all rounded-full"
-            ><span className="hover:text-gray-400">
-              {value.icon}
-            </span>
+            >
+              <span className="hover:text-gray-400">{value.icon}</span>
             </Link>
           ))}
         </div>

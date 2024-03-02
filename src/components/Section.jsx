@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
+import { ToastContainer } from "react-toastify";
+import { HomeContext } from "../context/home/HomeState";
 
-export default function Section({ data }) {
+export default function Section() {
+  const { data } = useContext(HomeContext);
   return (
     <section
       id="main"
-      className="w-full p-4 flex flex-col justify-center items-center gap-4 mt-20 relative"
+      className="w-full p-4 flex flex-col justify-start items-center gap-4 mt-20 relative"
     >
       {data.map((value) => (
         <article
@@ -22,6 +25,7 @@ export default function Section({ data }) {
             >
               {value.btn[0]}
             </button>
+            <ToastContainer className="w-full sm:w-3/5 text-lg" />
           </main>
         </article>
       ))}
