@@ -15,6 +15,7 @@ import User from "./Pages/User.jsx";
 import Forms from "./components/Forms.jsx";
 import About from "./components/About.jsx"
 import MyCart from "./components/MyCart.jsx"
+import Admin from "./components/Admin/Admin.jsx";
 
 const router = createBrowserRouter([
   {
@@ -41,8 +42,12 @@ const router = createBrowserRouter([
         path: "cart",
         element: <MyCart />,
       },
-
+      
     ],
+  },
+  {
+    path: "admin",
+    element: <Admin />,
   },
 ]);
 
