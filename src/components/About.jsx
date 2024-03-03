@@ -1,7 +1,7 @@
 import React from "react";
 import ShortDetails from "./ShortDetails";
 
-export default function SiteDetails() {
+export default function About() {
   let details = [
     {
       heading: "Why to choose MediShop?",

@@ -11,14 +11,12 @@ export default function User() {
   const { showFilter } = useContext(FilterContext);
   return (
     <>
-      <Header />
       <div className="mt-20">
         <FilterBar />
         {!showFilter && <UserHome />}
         {showFilter && <FilterBox />}
         <PageIndexing />
       </div>
-      <Footer />
     </>
   );
 }

@@ -1,10 +1,12 @@
 import React, { useContext } from "react";
 import { ToastContainer } from "react-toastify";
 import { HomeContext } from "../context/home/HomeState";
+import TopSelling from "./TopSelling";
 
 export default function Section() {
   const { data } = useContext(HomeContext);
   return (
+    <>
     <section
       id="main"
       className="w-full p-4 flex flex-col justify-start items-center gap-4 mt-20 relative"
@@ -30,5 +32,7 @@ export default function Section() {
         </article>
       ))}
     </section>
+    <TopSelling/>
+    </>
   );
 }

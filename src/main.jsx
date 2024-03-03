@@ -8,6 +8,43 @@ import FilterState from "./context/filter/FilterState.jsx";
 import UserState from "./context/user/UserState.jsx";
 import HomeState from "./context/home/HomeState.jsx";
 import CustomerState from "./context/APIs/Customer/CustomerSate.jsx";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import Section from "./components/Section.jsx";
+import Home from "./Pages/Home.jsx";
+import User from "./Pages/User.jsx";
+import Forms from "./components/Forms.jsx";
+import About from "./components/About.jsx"
+import MyCart from "./components/MyCart.jsx"
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <App />,
+    children: [
+      {
+        path: "",
+        element: <Section />,
+      },
+      {
+        path: "home",
+        element: <User />,
+      },
+      {
+        path: "auth",
+        element: <Forms />,
+      },
+      {
+        path: "about",
+        element: <About />,
+      },
+      {
+        path: "cart",
+        element: <MyCart />,
+      },
+
+    ],
+  },
+]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <UserState>
@@ -16,7 +53,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         <MenuState>
           <AuthState>
             <FilterState>
-              <App />
+              <RouterProvider router={router} />
             </FilterState>
           </AuthState>
         </MenuState>
