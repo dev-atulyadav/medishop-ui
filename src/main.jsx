@@ -13,9 +13,11 @@ import Section from "./components/Section.jsx";
 import Home from "./Pages/Home.jsx";
 import User from "./Pages/User.jsx";
 import Forms from "./components/Forms.jsx";
-import About from "./components/About.jsx"
-import MyCart from "./components/MyCart.jsx"
+import About from "./components/About.jsx";
+import MyCart from "./components/MyCart.jsx";
 import Admin from "./components/Admin/Admin.jsx";
+import UserProfile from "./components/UserProfile.jsx";
+import AdminLogin from "./components/Admin/AdminLogin.jsx";
 
 const router = createBrowserRouter([
   {
@@ -23,31 +25,40 @@ const router = createBrowserRouter([
     element: <App />,
     children: [
       {
-        path: "",
+        path: "/",
         element: <Section />,
       },
       {
-        path: "home",
+        path: "/home",
         element: <User />,
       },
       {
-        path: "auth",
+        path: "/auth",
         element: <Forms />,
       },
       {
-        path: "about",
+        path: "/about",
         element: <About />,
       },
       {
-        path: "cart",
+        path: "/cart",
         element: <MyCart />,
       },
-      
+      {
+        path: "/my-profile",
+        element: <UserProfile />,
+      },
     ],
   },
   {
-    path: "admin",
+    path: "/admin",
     element: <Admin />,
+    children:[
+      {
+        path:"/admin/login",
+        element:<AdminLogin/>
+      }
+    ]
   },
 ]);
 

@@ -8,7 +8,6 @@ import { UserContext } from "../context/user/UserState";
 import { BsEmojiExpressionless, BsEmojiSurprise } from "react-icons/bs";
 import { ToastContainer, toast } from "react-toastify";
 
-
 export default function Login() {
   const { handleForms } = useContext(AuthContext);
   const { handleResponse } = useContext(CustomerContext);
@@ -27,12 +26,12 @@ export default function Login() {
       <form className="flex h- w-full flex-col justify-center items-center gap-4">
         <div className="w-full relative flex justify-center items-center">
           <input
-            onChange={(e) =>{ 
-              let value = e.target.value
-              if(value!=""  ){
-              handleLogin("email",value)
+            onChange={(e) => {
+              let value = e.target.value;
+              if (value != "") {
+                handleLogin("email", value);
               }
-              }}
+            }}
             type="email"
             placeholder="Enter Email"
             className="py-3 pl-4 pr-3 w-full rounded-xl bg-[#eeeeee53] placeholder:text-white text-white border-2 focus:outline-double outline-green-300 border-none outline-4"
@@ -42,8 +41,8 @@ export default function Login() {
         <div className="w-full relative flex justify-center items-center">
           <input
             onChange={(e) => {
-              handleLogin("password", e.target.value)
-              }}
+              handleLogin("password", e.target.value);
+            }}
             type={visibility ? "text" : "password"}
             placeholder="Enter password"
             className="py-3 pl-4 pr-3 w-full rounded-xl bg-[#eeeeee53] placeholder:text-white text-white border-2 focus:outline-double outline-green-300 border-none outline-4"

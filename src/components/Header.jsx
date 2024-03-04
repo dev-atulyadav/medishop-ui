@@ -25,7 +25,7 @@ export default function Header() {
   ]);
 
   return (
-    <header className=" bg-slate-600 flex justify-between items-center px-4 py-2 fixed w-full top-0 z-10">
+    <header className=" bg-slate-600 flex justify-between items-center px-6 py-2 fixed w-full top-0 z-10">
       <Link
         to="/"
         className="flex justify-center items-center text-xl sm:text-3xl uppercase font-bold gap-2 text-white cursor-pointer"

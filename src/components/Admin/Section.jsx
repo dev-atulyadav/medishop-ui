@@ -1,10 +1,11 @@
 import React, { useContext } from "react";
+import { Link } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 
 export default function Section() {
   return (
     <>
-      <section className="w-full p-4 flex flex-col justify-start items-center gap-4 mt-20 relative h-96">
+      <section className="w-full p-4 flex flex-col justify-start items-center gap-4 mt-20 relative h-[30rem]">
         <article className=" rounded-xl w-full flex flex-col justify-start items-center gap-4 relative h-full">
           <main className="sm:h-full w-full sm:flex sm:justify-center sm:items-end overflow-hidden rounded-xl">
             <img
@@ -18,9 +19,12 @@ export default function Section() {
               <h2>Welcome Admin...</h2>
               <h3>Keep Checking user data.</h3>
             </div>
-            <button className="px-4 py-2 hover:bg-green-400 hover:text-white text-lg  rounded-xl border-green-400 border-[1px] sm:self-center">
+            <Link
+              to="/admin/login"
+              className="px-4 py-2 hover:bg-green-400 hover:text-white text-lg  rounded-xl border-green-400 border-[1px] sm:self-center"
+            >
               Login Now
-            </button>
+            </Link>
             <ToastContainer className="w-full sm:w-3/5 text-lg" />
           </main>
         </article>
