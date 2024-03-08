@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
+import UserData from "./UserData";
 
 export default function Section() {
   return (
@@ -10,7 +11,7 @@ export default function Section() {
           <main className="sm:h-full w-full sm:flex sm:justify-center sm:items-end overflow-hidden rounded-xl">
             <img
               src="https://images.pexels.com/photos/669619/pexels-photo-669619.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-              className="w-full aspect-video"
+              className="w-full h-full lg:h-auto aspect-video"
               alt=""
             />
           </main>
@@ -29,6 +30,7 @@ export default function Section() {
           </main>
         </article>
       </section>
+      <UserData/>
     </>
   );
 }
