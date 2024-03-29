@@ -10,7 +10,6 @@ import HomeState from "./context/home/HomeState.jsx";
 import CustomerState from "./context/APIs/Customer/CustomerSate.jsx";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Section from "./components/Section.jsx";
-import Home from "./Pages/Home.jsx";
 import User from "./Pages/User.jsx";
 import Forms from "./components/Forms.jsx";
 import About from "./components/About.jsx";
