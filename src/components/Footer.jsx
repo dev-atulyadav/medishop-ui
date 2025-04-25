@@ -36,6 +36,7 @@ export default function Footer() {
         <Link to="/home">Home</Link>
         <Link to="/about">About</Link>
         <Link to="/service">Service</Link>
+        <Link to="/auth/vendor/login">Vendor</Link>
       </div>
       <small className="font-semibold">© Copyright 2024-25</small>
     </footer>

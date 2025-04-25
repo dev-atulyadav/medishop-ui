@@ -1,22 +1,38 @@
 import React, { createContext, useContext, useState } from "react";
 import { MenuContext } from "../menu/MenuState";
-
+import { login, register } from "../../../lib/action";
+import { toast } from "react-toastify";
 export const AuthContext = createContext();
 
 const AuthState = (props) => {
+  const user = JSON.parse(localStorage.getItem("user"));
   const handleMenu = useContext(MenuContext).handleMenu;
   const [auth, setAuth] = useState("");
-  const handleForms = (e) => {
-    e.preventDefault();
-    let target = e.target.textContent;
-    handleMenu(auth);
-    if (target == "") setAuth(target);
-    if (auth == "" || target === "Login") {
-      setAuth("Login");
+
+  const handleForms = async (userData, type) => {
+    console.log(userData);
+    if (type === "register") {
+      const response = await register(userData);
+      if (response.status === 201) {
+        toast.success("User registered successfully");
+        localStorage.setItem("user", JSON.stringify(response.data));
+      } else {
+        toast.error("User already exists");
+      }
     }
-    if (target == "Register") {
-      setAuth(target);
+    if (type === "login") {
+      const response = await login(userData);
+      if (response.status === 200) {
+        toast.success("User logged in successfully");
+        localStorage.setItem("user", JSON.stringify(response.data));
+      } else {
+        toast.error("Invalid email or password");
+      }
     }
+  };
+  const handleLogout = () => {
+    localStorage.removeItem("user");
+    toast.success("User logged out successfully");
   };
   const validateInputs = (type, data) => {
     if (type === "email") {

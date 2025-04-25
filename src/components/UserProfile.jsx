@@ -1,13 +1,19 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, Navigate } from "react-router-dom";
 import { TbEdit } from "react-icons/tb";
+import { deleteUser } from "../../lib/action";
 
 export default function UserProfile() {
+  const user = JSON.parse(localStorage.getItem("user"));
   const [edit, setEdit] = useState(false);
   const handleEdits = () => {
     setEdit(!edit);
   };
-
+  useEffect(() => {
+    if (!user) {
+      return <Navigate to="/auth/login" />;
+    }
+  }, []);
   return (
     <section className="w-full p-3 mt-20">
       <article className="h-full w-full shadow-inset-3xl rounded-xl p-4 flex flex-col items-center justify-start">
@@ -17,13 +23,13 @@ export default function UserProfile() {
             className="rounded-full h-28 w-28"
             alt=""
           />
-          <h3 className="text-2xl font-bold">Hello World!</h3>
+          <h3 className="text-2xl font-bold">{user.name}</h3>
           <div className="flex gap-2 p-4 w-full border-b-2 border-gray-300 rounded-xl relative">
             <label htmlFor="email">Email:</label>
             <input
               onChange={() => {}}
               type="email"
-              value={edit ? null : "world@gmail.com"}
+              value={edit ? null : user.email}
               name=""
               id="email"
             />
@@ -39,7 +45,7 @@ export default function UserProfile() {
             <input
               type="tel"
               disabled
-              value={"123456789"}
+              value={user.phone}
               name=""
               id="contact"
             />
@@ -47,13 +53,7 @@ export default function UserProfile() {
           </div>
           <div className="flex gap-2 p-4 w-full border-b-2 border-gray-300 rounded-xl relative">
             <label htmlFor="dob">DOB:</label>
-            <input
-              type="text"
-              disabled
-              value={"01-JAN-2000"}
-              name=""
-              id="dob"
-            />
+            <input type="text" disabled value={user.dob} name="" id="dob" />
             <TbEdit className="text-2xl text-gray-500 absolute right-2" />
           </div>
           <div className="flex gap-2 p-4 w-full border-b-2 border-gray-300 rounded-xl relative">
@@ -61,7 +61,7 @@ export default function UserProfile() {
             <input
               type="address"
               disabled
-              value={"Abc-Delhi-123456"}
+              value={user.address}
               name=""
               id="address"
             />
@@ -79,8 +79,16 @@ export default function UserProfile() {
             </Link>
           </span>
         </form>
-        <span className="p-4 text-sm text-red-600 underline">
-          <p>deactivate my account!!</p>
+        <span className="p-4 text-sm text-red-600">
+          <button
+            className="underline"
+            onClick={(e) => {
+              e.preventDefault();
+              deleteUser(user.email);
+            }}
+          >
+            deactivate my account!!
+          </button>
         </span>
       </article>
     </section>

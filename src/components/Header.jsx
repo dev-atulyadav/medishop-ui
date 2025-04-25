@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Icon from "../assets/images/icon.png";
 import { CgMenuRight } from "react-icons/cg";
 import Nav from "./Nav";
@@ -6,23 +6,28 @@ import { IoHomeOutline } from "react-icons/io5";
 import { GoInfo } from "react-icons/go";
 import { IoCartOutline } from "react-icons/io5";
 import { HiOutlineUserCircle } from "react-icons/hi2";
-import { AuthContext } from "../context/form/AuthState";
 import { MenuContext } from "../context/menu/MenuState";
 import { Link } from "react-router-dom";
 
 export default function Header() {
   const { b, handleMenu } = useContext(MenuContext);
-  const [navLinks] = useState([
+  const user = JSON.parse(localStorage.getItem("user"));
+  const [navLinks, setNavLinks] = useState([
     { name: "Home", url: "/home", func: handleMenu, icon: <IoHomeOutline /> },
     { name: "About", url: "/about", func: handleMenu, icon: <GoInfo /> },
     { name: "Cart", url: "/cart", func: handleMenu, icon: <IoCartOutline /> },
     {
-      name: "User",
-      url: "/auth",
+      name: user ? "User" : "Login",
+      url: user ? "/my-profile" : "/auth/login",
       func: handleMenu,
       icon: <HiOutlineUserCircle />,
     },
   ]);
+  useEffect(() => {
+    if (user) {
+      setNavLinks([...navLinks]);
+    }
+  }, []);
 
   return (
     <header className=" bg-slate-600 flex justify-between items-center px-6 py-2 fixed w-full top-0 z-10">

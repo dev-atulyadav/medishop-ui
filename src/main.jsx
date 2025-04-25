@@ -17,6 +17,7 @@ import MyCart from "./components/MyCart.jsx";
 import Admin from "./components/Admin/Admin.jsx";
 import UserProfile from "./components/UserProfile.jsx";
 import AdminLogin from "./components/Admin/AdminLogin.jsx";
+import { CookiesProvider } from "react-cookie";
 
 const router = createBrowserRouter([
   {
@@ -32,7 +33,7 @@ const router = createBrowserRouter([
         element: <User />,
       },
       {
-        path: "/auth",
+        path: "/auth/:action",
         element: <Forms />,
       },
       {
@@ -52,27 +53,29 @@ const router = createBrowserRouter([
   {
     path: "/admin",
     element: <Admin />,
-    children:[
+    children: [
       {
-        path:"/admin/login",
-        element:<AdminLogin/>
-      }
-    ]
+        path: "/admin/login",
+        element: <AdminLogin />,
+      },
+    ],
   },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <UserState>
-    <CustomerState>
-      <HomeState>
-        <MenuState>
-          <AuthState>
-            <FilterState>
-              <RouterProvider router={router} />
-            </FilterState>
-          </AuthState>
-        </MenuState>
-      </HomeState>
-    </CustomerState>
-  </UserState>
+  <CookiesProvider>
+    <UserState>
+      <CustomerState>
+        <HomeState>
+          <MenuState>
+            <AuthState>
+              <FilterState>
+                <RouterProvider router={router} />
+              </FilterState>
+            </AuthState>
+          </MenuState>
+        </HomeState>
+      </CustomerState>
+    </UserState>
+  </CookiesProvider>
 );

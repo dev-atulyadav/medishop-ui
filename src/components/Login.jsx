@@ -1,18 +1,18 @@
 import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
-import { AuthContext } from "../context/form/AuthState";
-import Input from "./Input";
+import { Link, Navigate } from "react-router-dom";
 import { AiOutlineCloseCircle } from "react-icons/ai";
-import { CustomerContext } from "../context/APIs/Customer/CustomerSate";
-import { UserContext } from "../context/user/UserState";
 import { BsEmojiExpressionless, BsEmojiSurprise } from "react-icons/bs";
-import { ToastContainer, toast } from "react-toastify";
+import { AuthContext } from "../context/form/AuthState";
 
 export default function Login() {
   const { handleForms } = useContext(AuthContext);
-  const { handleResponse } = useContext(CustomerContext);
-  const { handleLogin } = useContext(UserContext);
+  const user = JSON.parse(localStorage.getItem("user"));
+  const [userData, setUserData] = useState({});
   const [visibility, setVisibility] = useState(false);
+
+  if (user) {
+    return <Navigate to="/" />;
+  }
 
   return (
     <div className=" rounded-xl w-96 h-72 sm:w-80 text-white self-center flex flex-col justify-center items-center bg-[#62626249] p-4 gap-4 relative border-2">
@@ -29,7 +29,7 @@ export default function Login() {
             onChange={(e) => {
               let value = e.target.value;
               if (value != "") {
-                handleLogin("email", value);
+                setUserData({ ...userData, email: value });
               }
             }}
             type="email"
@@ -41,7 +41,7 @@ export default function Login() {
         <div className="w-full relative flex justify-center items-center">
           <input
             onChange={(e) => {
-              handleLogin("password", e.target.value);
+              setUserData({ ...userData, password: e.target.value });
             }}
             type={visibility ? "text" : "password"}
             placeholder="Enter password"
@@ -56,7 +56,10 @@ export default function Login() {
           </span>
         </div>
         <button
-          onClick={handleResponse}
+          onClick={(e) => {
+            e.preventDefault();
+            handleForms(userData, "login");
+          }}
           className="px-8 py-3 bg-green-400 uppercase  hover:bg-green-500 rounded-xl"
         >
           Login
@@ -64,7 +67,7 @@ export default function Login() {
       </form>
       <span className="flex gap-1.5">
         <p>Not a user?</p>
-        <Link onClick={handleForms} className="text-blue-500 hover:underline">
+        <Link to="/auth/register" className="text-blue-500 hover:underline">
           Register
         </Link>
       </span>
