@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { FiFilter } from "react-icons/fi";
 import { FaArrowDownWideShort } from "react-icons/fa6";
-import { FilterContext } from "../context/filter/FilterState";
+import { FilterContext } from "../../context/filter/FilterState";
 
 export default function FilterBar() {
   const { showFilter, handleFilterBox } = useContext(FilterContext);

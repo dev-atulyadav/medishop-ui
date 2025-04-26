@@ -3,7 +3,7 @@ import { FaInstagram } from "react-icons/fa";
 import { FaMeta } from "react-icons/fa6";
 import { RiTwitterXFill } from "react-icons/ri";
 import { Link } from "react-router-dom";
-import Icon from "../assets/images/icon.png";
+import Icon from "../../assets/images/icon.png";
 
 export default function Footer() {
   const [link, setLink] = useState([
@@ -36,7 +36,7 @@ export default function Footer() {
         <Link to="/home">Home</Link>
         <Link to="/about">About</Link>
         <Link to="/service">Service</Link>
-        <Link to="/auth/vendor/login">Vendor</Link>
+        <Link to="/vendor/login">Vendor</Link>
       </div>
       <small className="font-semibold">© Copyright 2024-25</small>
     </footer>

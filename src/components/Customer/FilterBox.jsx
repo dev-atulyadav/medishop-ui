@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { FilterContext } from "../context/filter/FilterState";
+import { FilterContext } from "../../context/filter/FilterState";
 
 export default function FilterBox() {
   const [checkBoxs] = useState([

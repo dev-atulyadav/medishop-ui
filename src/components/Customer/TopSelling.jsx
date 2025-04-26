@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import Hansaplast from "../assets/svgs/hansaplast.svg";
-import HealthKart from "../assets/svgs/HealthKart.svg";
-import Mankind from "../assets/svgs/Mankind.svg";
-import Dabur from "../assets/svgs/Dabur.svg";
-import Johnson from "../assets/svgs/johnson.svg";
+import Hansaplast from "../../assets/svgs/hansaplast.svg";
+import HealthKart from "../../assets/svgs/HealthKart.svg";
+import Mankind from "../../assets/svgs/Mankind.svg";
+import Dabur from "../../assets/svgs/Dabur.svg";
+import Johnson from "../../assets/svgs/johnson.svg";
 import { Link } from "react-router-dom";
 
 export default function TopSelling() {

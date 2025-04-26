@@ -9,15 +9,20 @@ import UserState from "./context/user/UserState.jsx";
 import HomeState from "./context/home/HomeState.jsx";
 import CustomerState from "./context/APIs/Customer/CustomerSate.jsx";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import Section from "./components/Section.jsx";
+import Section from "./components/Customer/Section.jsx";
 import User from "./Pages/User.jsx";
-import Forms from "./components/Forms.jsx";
-import About from "./components/About.jsx";
-import MyCart from "./components/MyCart.jsx";
+import Forms from "./components/Customer/Forms.jsx";
+import About from "./components/About/About.jsx";
+import MyCart from "./components/Customer/MyCart.jsx";
 import Admin from "./components/Admin/Admin.jsx";
-import UserProfile from "./components/UserProfile.jsx";
+import UserProfile from "./components/Customer/UserProfile.jsx";
 import AdminLogin from "./components/Admin/AdminLogin.jsx";
 import { CookiesProvider } from "react-cookie";
+import VendorHome from "./components/Vendor/VendorHome.jsx";
+import VendorLogin from "./components/Vendor/VendorLogin.jsx";
+import VendorSignup from "./components/Vendor/VendorSignup.jsx";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const router = createBrowserRouter([
   {
@@ -48,6 +53,18 @@ const router = createBrowserRouter([
         path: "/my-profile",
         element: <UserProfile />,
       },
+      {
+        path: "/vendor",
+        element: <VendorHome />,
+      },
+      {
+        path: "/vendor/login",
+        element: <VendorLogin />,
+      },
+      {
+        path: "/vendor/register",
+        element: <VendorSignup />,
+      },
     ],
   },
   {
@@ -70,6 +87,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
           <MenuState>
             <AuthState>
               <FilterState>
+                <ToastContainer />
                 <RouterProvider router={router} />
               </FilterState>
             </AuthState>

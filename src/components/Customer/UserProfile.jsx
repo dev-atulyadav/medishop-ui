@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, Navigate } from "react-router-dom";
 import { TbEdit } from "react-icons/tb";
-import { deleteUser } from "../../lib/action";
+import { deleteUser } from "../../../lib/action";
 
 export default function UserProfile() {
   const user = JSON.parse(localStorage.getItem("user"));

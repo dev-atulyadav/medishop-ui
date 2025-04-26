@@ -1,9 +1,8 @@
 import React, { useContext, useState } from "react";
-import Header from "../components/Header";
-import Auth from "./Auth";
-import Section from "../components/Section";
-import Footer from "../components/Footer";
-import TopSelling from "../components/TopSelling";
+import Header from "../components/Header/Header";
+import Section from "../components/Customer/Section";
+import Footer from "../components/Footer/Footer";
+import TopSelling from "../components/Customer/TopSelling";
 
 export default function Home() {
   return (

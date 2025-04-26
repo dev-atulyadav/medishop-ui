@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 import { Link } from "react-router-dom";
-import { MenuContext } from "../context/menu/MenuState";
+import { MenuContext } from "../../context/menu/MenuState";
 
 export default function Nav({ navLinks }) {
   const handleMenu = useContext(MenuContext).handleMenu;

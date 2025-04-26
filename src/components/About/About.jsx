@@ -1,5 +1,5 @@
 import React from "react";
-import ShortDetails from "./ShortDetails";
+import ShortDetails from "../Customer/ShortDetails";
 
 export default function About() {
   let details = [

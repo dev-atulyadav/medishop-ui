@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { Link, Navigate } from "react-router-dom";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 import { BsEmojiExpressionless, BsEmojiSurprise } from "react-icons/bs";
-import { AuthContext } from "../context/form/AuthState";
+import { AuthContext } from "../../context/form/AuthState";
 
 export default function Login() {
   const { handleForms } = useContext(AuthContext);

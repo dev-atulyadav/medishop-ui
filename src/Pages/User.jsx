@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
-import UserHome from "../components/UserHome";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
-import FilterBar from "../components/FilterBar";
-import PageIndexing from "../components/PageIndexing";
-import FilterBox from "../components/FilterBox";
+import UserHome from "../components/Customer/UserHome";
+import Header from "../components/Header/Header";
+import Footer from "../components/Footer/Footer";
+import FilterBar from "../components/Customer/FilterBar";
+import PageIndexing from "../components/Customer/PageIndexing";
+import FilterBox from "../components/Customer/FilterBox";
 import { FilterContext } from "../context/filter/FilterState";
 
 export default function User() {

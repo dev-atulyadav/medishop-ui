@@ -3,7 +3,7 @@ import { Link, Navigate } from "react-router-dom";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 import { BsEmojiExpressionless, BsEmojiSurprise } from "react-icons/bs";
 import { toast } from "react-toastify";
-import { AuthContext } from "../context/form/AuthState";
+import { AuthContext } from "../../context/form/AuthState";
 export default function Signup() {
   const { handleForms } = useContext(AuthContext);
   const user = JSON.parse(localStorage.getItem("user"));

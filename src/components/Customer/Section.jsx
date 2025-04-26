@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { ToastContainer } from "react-toastify";
-import { HomeContext } from "../context/home/HomeState";
+import { HomeContext } from "../../context/home/HomeState";
 import TopSelling from "./TopSelling";
 import TopProducts from "./TopProducts";
 import { Link } from "react-router-dom";

@@ -1,12 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
-import Icon from "../assets/images/icon.png";
+import Icon from "../../assets/images/icon.png";
 import { CgMenuRight } from "react-icons/cg";
 import Nav from "./Nav";
 import { IoHomeOutline } from "react-icons/io5";
 import { GoInfo } from "react-icons/go";
 import { IoCartOutline } from "react-icons/io5";
 import { HiOutlineUserCircle } from "react-icons/hi2";
-import { MenuContext } from "../context/menu/MenuState";
+import { MenuContext } from "../../context/menu/MenuState";
 import { Link } from "react-router-dom";
 
 export default function Header() {
