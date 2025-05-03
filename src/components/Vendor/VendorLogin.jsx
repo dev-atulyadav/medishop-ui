@@ -4,6 +4,7 @@ import { AiOutlineCloseCircle } from "react-icons/ai";
 import { BsEmojiExpressionless, BsEmojiSurprise } from "react-icons/bs";
 import vendorImage from "../../assets/images/vendor-bg.jpg";
 import { vendorLogin } from "../../../lib/action";
+import { toast } from "react-toastify";
 export default function VendorLogin() {
   const vendor = JSON.parse(localStorage.getItem("vendor"));
   const [vendorData, setVendorData] = useState({});
@@ -17,8 +18,24 @@ export default function VendorLogin() {
     e.preventDefault();
     const response = await vendorLogin(vendorData);
     if (response.status === 200) {
+      console.log(response.data);
       localStorage.setItem("vendor", JSON.stringify(response.data));
-      toast.success(response.data.message);
+      toast.success(response.msg, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+      });
+      window.location.href = "/vendor";
+    } else {
+      toast.error(response.msg, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+      });
     }
   };
   return (

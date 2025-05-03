@@ -1,9 +1,13 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import UserData from "./UserData";
 
 export default function Section() {
+  const admin = JSON.parse(localStorage.getItem("admin"));
+  if (admin) {
+    return <Navigate to="/admin/home" />;
+  }
   return (
     <>
       <section className="w-full p-4 flex flex-col justify-start items-center gap-4 mt-20 relative h-[30rem]">
@@ -30,7 +34,7 @@ export default function Section() {
           </main>
         </article>
       </section>
-      <UserData/>
+      {/* <UserData/> */}
     </>
   );
 }

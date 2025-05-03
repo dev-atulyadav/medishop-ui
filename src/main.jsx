@@ -23,6 +23,10 @@ import VendorLogin from "./components/Vendor/VendorLogin.jsx";
 import VendorSignup from "./components/Vendor/VendorSignup.jsx";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import AdminHome from "./components/Admin/AdminHome.jsx";
+import DisplayVendors from "./components/Admin/DisplayVendors.jsx";
+import AddMedicine from "./components/Vendor/AddMedicine.jsx";
+import DisplayMedicine from "./components/Admin/DisplayMedicine.jsx";
 
 const router = createBrowserRouter([
   {
@@ -30,50 +34,66 @@ const router = createBrowserRouter([
     element: <App />,
     children: [
       {
-        path: "/",
+        path: "",
         element: <Section />,
       },
       {
-        path: "/home",
+        path: "home",
         element: <User />,
       },
       {
-        path: "/auth/:action",
+        path: "auth/:action",
         element: <Forms />,
       },
       {
-        path: "/about",
+        path: "about",
         element: <About />,
       },
       {
-        path: "/cart",
+        path: "cart",
         element: <MyCart />,
       },
       {
-        path: "/my-profile",
+        path: "my-profile",
         element: <UserProfile />,
       },
       {
-        path: "/vendor",
+        path: "vendor",
         element: <VendorHome />,
       },
       {
-        path: "/vendor/login",
+        path: "vendor/login",
         element: <VendorLogin />,
       },
       {
-        path: "/vendor/register",
+        path: "vendor/register",
         element: <VendorSignup />,
       },
-    ],
-  },
-  {
-    path: "/admin",
-    element: <Admin />,
-    children: [
       {
-        path: "/admin/login",
-        element: <AdminLogin />,
+        path: "vendor/add-medicine",
+        element: <AddMedicine />,
+      },
+      {
+        path: "admin",
+        element: <Admin />,
+        children: [
+          {
+            path: "login",
+            element: <AdminLogin />,
+          },
+          {
+            path: "home",
+            element: <AdminHome />,
+          },
+          {
+            path: "vendors",
+            element: <DisplayVendors />,
+          },
+          {
+            path: "review-medicine",
+            element: <DisplayMedicine />,
+          },
+        ],
       },
     ],
   },

@@ -1,34 +1,23 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, Navigate } from "react-router-dom";
+import { getAllMedicines } from "../../../lib/action";
 
 const VendorHome = () => {
   const [vendor, setVendor] = useState(
     JSON.parse(localStorage.getItem("vendor"))
   );
-  const [products, setProducts] = useState(
-    vendor.medicine
-      ? vendor.medicine
-      : [
-          {
-            id: 1,
-            name: "Sample Product 1",
-            price: 299,
-            stock: 50,
-            sales: 12,
-          },
-          {
-            id: 2,
-            name: "Sample Product 2",
-            price: 499,
-            stock: 30,
-            sales: 8,
-          },
-        ]
-  );
+  const [products, setProducts] = useState([]);
   if (!vendor || vendor.vendorStatus === "inactive") {
     return <Navigate to="/vendor/login" />;
   }
-  console.log(vendor);
+  useEffect(() => {
+    const fetchProducts = async () => {
+      const response = await getAllMedicines();
+      setProducts(response.data);
+      console.log(response);
+    };
+    fetchProducts();
+  }, []);
   return (
     <section className="w-full min-h-screen bg-gray-50 p-6 mt-20">
       <article className="max-w-7xl mx-auto">
@@ -49,18 +38,19 @@ const VendorHome = () => {
               </div>
               <div className="bg-green-50 p-4 rounded-md">
                 <p className="text-sm text-green-600">Total Sales</p>
-                <p className="text-2xl font-bold">
-                  {products.reduce((acc, curr) => acc + curr.sales, 0)}
-                </p>
+                <p className="text-2xl font-bold">0</p>
               </div>
             </div>
           </div>
 
           <div className="bg-white p-6 rounded-lg shadow-md">
             <h2 className="text-xl font-semibold mb-4">Product Management</h2>
-            <button className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition">
-              Add New Product
-            </button>
+            <Link
+              to="/vendor/add-medicine"
+              className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition"
+            >
+              Add Medicine
+            </Link>
           </div>
 
           <div className="bg-white p-6 rounded-lg shadow-md">
@@ -72,34 +62,52 @@ const VendorHome = () => {
         <section className="mt-8 bg-white p-6 rounded-lg shadow-md">
           <h2 className="text-xl font-semibold mb-4">Your Products</h2>
           <div className="overflow-x-auto">
-            <table className="w-full">
-              <thead className="bg-gray-50">
-                <tr>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">
-                    Name
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">
-                    Price
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">
-                    Stock
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">
-                    Sales
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-gray-200">
-                {products.map((product) => (
-                  <tr key={product.id}>
-                    <td className="px-6 py-4">{product.name}</td>
-                    <td className="px-6 py-4">₹{product.price}</td>
-                    <td className="px-6 py-4">{product.stock}</td>
-                    <td className="px-6 py-4">{product.sales}</td>
+            {products.length > 0 ? (
+              <table className="w-full">
+                <thead className="bg-gray-50">
+                  <tr>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">
+                      Name
+                    </th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">
+                      Price
+                    </th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">
+                      Stock
+                    </th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">
+                      Sales
+                    </th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">
+                      Status
+                    </th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody className="divide-y divide-gray-200">
+                  {products.map((product) => (
+                    <tr key={product.id}>
+                      <td className="px-6 py-4">{product.name}</td>
+                      <td className="px-6 py-4">₹{product.price}</td>
+                      <td className="px-6 py-4">{product.quantity}</td>
+                      <td className="px-6 py-4">0</td>
+                      <td className="px-6 py-4">
+                        <span
+                          className={`px-2 py-1 text-xs font-medium rounded-full ${
+                            product.status === "approved"
+                              ? "bg-green-100 text-green-800"
+                              : "bg-red-100 text-red-800"
+                          }`}
+                        >
+                          {product.status}
+                        </span>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            ) : (
+              <p className="text-gray-500">No Records Found!</p>
+            )}
           </div>
         </section>
       </article>
