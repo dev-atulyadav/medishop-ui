@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, Navigate } from "react-router-dom";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 import { BsEmojiExpressionless, BsEmojiSurprise } from "react-icons/bs";
@@ -13,9 +13,11 @@ export default function Signup() {
   const handleUserData = (e) => {
     setUserData({ ...userData, [e.target.name]: e.target.value });
   };
-  if (user) {
-    return <Navigate to="/" />;
-  }
+  useEffect(() => {
+    if (user) {
+      return <Navigate to="/" />;
+    }
+  }, [user]);
   return (
     <div className=" rounded-xl text-white self-center flex flex-col justify-center items-center bg-[#62626249] p-4 gap-4 relative border-2 scale-75">
       <Link

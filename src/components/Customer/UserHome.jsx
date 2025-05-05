@@ -1,37 +1,40 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import ProductBox from "./ProductBox";
+import { getAllMedicines } from "../../../lib/action";
+import { DotLoader } from "react-spinners";
+import { UserContext } from "../../context/user/UserState";
 
 export default function UserHome() {
-  const [products, setProducts] = useState([
-    {
-      id: 1,
-      name: "Nutrigro By Complan Protein | 2 to 6 Years | Flavour Badam Kheer",
-      price: 100,
-      image:
-        "https://onemg.gumlet.io/l_watermark_346,w_690,h_700/a_ignore,w_690,h_700,c_pad,q_auto,f_auto/cropped/n5yq2ne4k31ae9najbli.png",
-    },
-    {
-      id: 2,
-      name: "Nutrigro By Complan Protein | 2 to 6 Years | Flavour Badam Kheer",
-      price: 200,
-      image:
-        "https://onemg.gumlet.io/l_watermark_346,w_690,h_700/a_ignore,w_690,h_700,c_pad,q_auto,f_auto/cropped/n5yq2ne4k31ae9najbli.png",
-    },
-    {
-      id: 3,
-      name: "Nutrigro By Complan Protein | 2 to 6 Years | Flavour Badam Kheer",
-      price: 300,
-      image:
-        "https://onemg.gumlet.io/l_watermark_346,w_690,h_700/a_ignore,w_690,h_700,c_pad,q_auto,f_auto/cropped/n5yq2ne4k31ae9najbli.png",
-    },
-  ]);
+  const { cart, handleAddToCart, handleRemoveFromCart, medicines } =
+    useContext(UserContext);
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 1000);
+  }, [medicines]);
   return (
     <section className=" w-full bg-red-00 p-2 flex justify-center items-center">
       <article className="sm:p-3 h-full w-full rounded-xl shadow-inset-xl bg-gray-100 overflow-scroll flex justify-center items-start">
         <main className="sm:flex flex-wrap justify-center items-center h-full w-full">
-          {products.map((product) => (
-            <ProductBox key={product.id} product={product} />
-          ))}
+          {loading ? (
+            <h1 className="text-2xl font-bold flex justify-center items-center h-[50vh] w-full">
+              <DotLoader color="gray" size={50} />
+            </h1>
+          ) : medicines?.length > 0 ? (
+            medicines.map((medicine) => (
+              <ProductBox
+                key={medicine.id}
+                medicine={medicine}
+                handleAddToCart={handleAddToCart}
+                handleRemoveFromCart={handleRemoveFromCart}
+              />
+            ))
+          ) : (
+            <h1 className="text-2xl font-bold flex justify-center items-center h-[50vh] w-full">
+              No medicines found
+            </h1>
+          )}
         </main>
       </article>
     </section>

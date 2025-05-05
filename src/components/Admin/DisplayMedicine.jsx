@@ -17,7 +17,7 @@ const DisplayMedicine = () => {
       console.log(response.data);
     };
     fetchMedicines();
-  }, []);
+  }, [editingMedicine]);
 
   const handleEdit = (medicine) => {
     setEditingMedicine(medicine);
@@ -62,6 +62,12 @@ const DisplayMedicine = () => {
                               <input
                                 type="text"
                                 defaultValue={medicine.name}
+                                onChange={(e) => {
+                                  setEditingMedicine({
+                                    ...editingMedicine,
+                                    name: e.target.value,
+                                  });
+                                }}
                                 className="border rounded px-2 py-1 w-1/12"
                               />
                               <input
@@ -71,20 +77,38 @@ const DisplayMedicine = () => {
                               />
                               <input
                                 type="number"
+                                onChange={(e) => {
+                                  setEditingMedicine({
+                                    ...editingMedicine,
+                                    price: e.target.value,
+                                  });
+                                }}
                                 defaultValue={medicine.price}
                                 className="border rounded px-2 py-1 w-1/12"
                               />
                               <input
                                 type="number"
+                                onChange={(e) => {
+                                  setEditingMedicine({
+                                    ...editingMedicine,
+                                    quantity: e.target.value,
+                                  });
+                                }}
                                 defaultValue={medicine.quantity}
                                 className="border rounded px-2 py-1 w-1/12"
                               />
                               <select
                                 defaultValue={medicine.status}
+                                onChange={(e) => {
+                                  setEditingMedicine({
+                                    ...editingMedicine,
+                                    status: e.target.value,
+                                  });
+                                }}
                                 className="border rounded px-2 py-1 w-1/6"
                               >
-                                <option value="approved">Approved</option>
-                                <option value="not approved">
+                                <option value="Approved">Approved</option>
+                                <option value="Not Approved">
                                   Not Approved
                                 </option>
                               </select>
@@ -100,7 +124,7 @@ const DisplayMedicine = () => {
                                       admin.email
                                     );
                                     console.log(response);
-                                    if (response.status === 200) {
+                                    if (response.status === 202) {
                                       toast.success(
                                         "Medicine status updated successfully!",
                                         {
@@ -160,7 +184,7 @@ const DisplayMedicine = () => {
                             <td className="px-4 py-2 whitespace-nowrap">
                               <span
                                 className={`text-sm px-2 py-1 rounded-full capitalize ${
-                                  medicine.status === "active"
+                                  medicine.status === "Approved"
                                     ? "bg-green-100 text-green-800"
                                     : "bg-red-100 text-red-800"
                                 }`}

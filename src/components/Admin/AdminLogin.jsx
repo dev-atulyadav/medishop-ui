@@ -3,6 +3,7 @@ import { Link, Navigate } from "react-router-dom";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 import { BsEmojiExpressionless, BsEmojiSurprise } from "react-icons/bs";
 import { adminLogin } from "../../../lib/action";
+import Section from "./Section";
 
 export default function AdminLogin() {
   const admin = JSON.parse(localStorage.getItem("admin"));
@@ -13,7 +14,7 @@ export default function AdminLogin() {
   });
 
   if (admin) {
-    return <Navigate to="/admin" />;
+    return <Navigate to="/admin/home" />;
   }
 
   return (

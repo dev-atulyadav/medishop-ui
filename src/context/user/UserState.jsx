@@ -1,8 +1,11 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
+import { toast } from "react-toastify";
+import { getAllMedicines } from "../../../lib/action";
 
 export const UserContext = createContext();
 
 export default function UserState(props) {
+  const [medicines, setMedicines] = useState([]);
   const [data, setData] = useState({
     name: "",
     dob: "",
@@ -12,6 +15,7 @@ export default function UserState(props) {
     phone: "",
     adhar: "",
   });
+  const [cart, setCart] = useState([]);
   const handleUpdate = (column, value) => {
     if (column == "name") {
       setData({
@@ -128,9 +132,67 @@ export default function UserState(props) {
       });
     }
   };
+  const handleAddToCart = (medicine, quantity) => {
+    if (cart.some((item) => item.id === medicine.id)) {
+      medicine.quantity += quantity;
+      toast.success("Quantity updated!" + " " + medicine.quantity, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+      });
+    } else {
+      medicine.quantity = quantity;
+      setCart([...cart, medicine]);
+      toast.success("Product added to cart!", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+      });
+    }
+  };
+  const handleRemoveFromCart = (medicine) => {
+    if (medicine.quantity > 1) {
+      medicine.quantity = medicine.quantity - 1;
+      toast.success("Quantity updated!" + " " + medicine.quantity, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+      });
+    } else {
+      setCart(cart.filter((item) => item.id !== medicine.id));
+      toast.error("Product removed from cart!", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+      });
+    }
+  };
+  useEffect(() => {
+    const fetchMedicines = async () => {
+      const response = await getAllMedicines();
+      if (response.status === 302) {
+        setMedicines(response.data);
+      }
+    };
+    fetchMedicines();
+  }, []);
   return (
     <UserContext.Provider
-      value={{ data, handleUpdate, handleRegister, handleLogin }}
+      value={{
+        data,
+        handleUpdate,
+        handleRegister,
+        handleLogin,
+        cart,
+        handleAddToCart,
+        handleRemoveFromCart,
+        medicines,
+      }}
     >
       {props.children}
     </UserContext.Provider>
