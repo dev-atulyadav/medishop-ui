@@ -27,6 +27,7 @@ import AdminHome from "./components/Admin/AdminHome.jsx";
 import DisplayVendors from "./components/Admin/DisplayVendors.jsx";
 import AddMedicine from "./components/Vendor/AddMedicine.jsx";
 import DisplayMedicine from "./components/Admin/DisplayMedicine.jsx";
+import ViewProductDetails from "./components/Customer/ViewProductDetails.jsx";
 
 const router = createBrowserRouter([
   {
@@ -40,6 +41,10 @@ const router = createBrowserRouter([
       {
         path: "home",
         element: <User />,
+      },
+      {
+        path: "home/view-medicine/:id",
+        element: <ViewProductDetails />,
       },
       {
         path: "auth/:action",

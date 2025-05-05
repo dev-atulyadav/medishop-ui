@@ -27,22 +27,21 @@ export default function ProductBox({ medicine, handleAddToCart }) {
         <img src={medicine.imageUrl} className="h-24" alt="Complain" />
         <div className="text-xs sm:text-sm sm:w-52 sm:text-center flex flex-col gap-3">
           <h3>{medicine.name}</h3>
+          <p>{medicine.price}</p>
           <span className="flex justify-center items-center gap-2 text-white">
-            <button
+            <Link to={`view-medicine/${medicine.id}`} className="px-2 py-2 w-full sm:w-24 border-[1px]  border-blue-500 hover:bg-blue-500 hover:text-white text-blue-500 rounded-lg ">
+              View Details
+            </Link>
+            <Link
+              to="/cart"
               onClick={() => {
                 setQuantity(quantity + 1);
                 handleAddToCart(medicine, quantity);
               }}
-              className="px-2 py-2 w-full sm:w-24 border-[1px]  border-blue-500 hover:bg-blue-500 hover:text-white text-blue-500 rounded-lg "
-            >
-              {quantity > 1 ? quantity : "Add to cart"}
-            </button>
-            <button
-              // onClick={() => handleAddToCart(medicine)}
               className="px-3 py-2 w-full sm:w-24 border-[1px] border-green-500 hover:bg-green-500 text-green-500 hover:text-white rounded-lg "
             >
               Buy now
-            </button>
+            </Link>
           </span>
         </div>
       </div>

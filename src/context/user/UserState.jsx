@@ -15,7 +15,9 @@ export default function UserState(props) {
     phone: "",
     adhar: "",
   });
-  const [cart, setCart] = useState([]);
+  const [cart, setCart] = useState(
+    JSON.parse(localStorage.getItem("cart")) || []
+  );
   const handleUpdate = (column, value) => {
     if (column == "name") {
       setData({
@@ -133,14 +135,15 @@ export default function UserState(props) {
     }
   };
   const handleAddToCart = (medicine, quantity) => {
+    console.log(cart);
     if (cart.some((item) => item.id === medicine.id)) {
-      medicine.quantity += quantity;
-      toast.success("Quantity updated!" + " " + medicine.quantity, {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-      });
+      setCart(
+        cart.map((item) =>
+          item.id === medicine.id ? { ...item, quantity: quantity } : item
+        )
+      );
+      localStorage.setItem("cart", JSON.stringify(cart));
+      console.log(cart);
     } else {
       medicine.quantity = quantity;
       setCart([...cart, medicine]);
@@ -151,17 +154,19 @@ export default function UserState(props) {
         closeOnClick: true,
         pauseOnHover: true,
       });
+      localStorage.setItem("cart", JSON.stringify(cart));
     }
   };
-  const handleRemoveFromCart = (medicine) => {
-    if (medicine.quantity > 1) {
-      medicine.quantity = medicine.quantity - 1;
-      toast.success("Quantity updated!" + " " + medicine.quantity, {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-      });
+  localStorage.setItem("cart", JSON.stringify(cart));
+
+  const handleRemoveFromCart = (medicine, quantity) => {
+    if (quantity > 1) {
+      setCart(
+        cart.map((item) =>
+          item.id === medicine.id ? { ...item, quantity: quantity - 1 } : item
+        )
+      );
+      localStorage.setItem("cart", JSON.stringify(cart));
     } else {
       setCart(cart.filter((item) => item.id !== medicine.id));
       toast.error("Product removed from cart!", {
@@ -170,6 +175,7 @@ export default function UserState(props) {
         hideProgressBar: false,
         closeOnClick: true,
       });
+      localStorage.setItem("cart", JSON.stringify(cart));
     }
   };
   useEffect(() => {
@@ -177,6 +183,7 @@ export default function UserState(props) {
       const response = await getAllMedicines();
       if (response.status === 302) {
         setMedicines(response.data);
+        // setMedicines(response.data.map((item=>)));
       }
     };
     fetchMedicines();

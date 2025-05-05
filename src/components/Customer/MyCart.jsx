@@ -1,9 +1,11 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../context/user/UserState";
 import { Link } from "react-router-dom";
 
 export default function MyCart() {
-  const { cart, handleRemoveFromCart, medicines } = useContext(UserContext);
+  const { cart, handleRemoveFromCart, handleAddToCart } =
+    useContext(UserContext);
+  const [quantity, setQuantity] = useState(1);
   console.log(cart);
 
   return (
@@ -24,11 +26,39 @@ export default function MyCart() {
                   <h3>{medicine.name}</h3>
                   <span className="flex gap-1 text-[0.8rem]">
                     <p>Price:</p>
-                    <p className="text-green-500">${medicine.price}</p>
+                    <p className="text-green-500">₹{medicine.price}</p>
+                  </span>
+                  <span className="flex gap-2 items-center text-[0.8rem]">
+                    <p>Quantity:</p>
+                    <div className="flex items-center gap-2">
+                      <button
+                        className="px-2 bg-gray-200 rounded-lg hover:bg-gray-300"
+                        onClick={() => {
+                          setQuantity(quantity - 1);
+                          if (quantity === 1) {
+                            handleRemoveFromCart(medicine, quantity);
+                          }
+                        }}
+                      >
+                        -
+                      </button>
+                      <p className="text-green-500">{medicine.quantity}</p>
+                      <button
+                        className="px-2 bg-gray-200 rounded-lg hover:bg-gray-300"
+                        onClick={() => {
+                          setQuantity(quantity + 1);
+                          handleAddToCart(medicine, quantity);
+                        }}
+                      >
+                        +
+                      </button>
+                    </div>
                   </span>
                   <span className="flex gap-1 text-[0.8rem]">
-                    <p>Quantity:</p>
-                    <p className="text-green-500">{medicine.quantity}</p>
+                    <p>Total Price:</p>
+                    <p className="text-green-500">
+                      ₹{medicine.price * medicine.quantity}
+                    </p>
                   </span>
                   <div className="flex gap-2 mt-2">
                     <button
@@ -39,7 +69,10 @@ export default function MyCart() {
                     </button>
                     <button
                       className="px-3 py-1 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors"
-                      onClick={() => handleRemoveFromCart(medicine)}
+                      onClick={() => {
+                        handleRemoveFromCart(medicine);
+                        setQuantity(1);
+                      }}
                     >
                       Remove
                     </button>

@@ -3,16 +3,42 @@ import ProductBox from "./ProductBox";
 import { getAllMedicines } from "../../../lib/action";
 import { DotLoader } from "react-spinners";
 import { UserContext } from "../../context/user/UserState";
-
+import { FilterContext } from "../../context/filter/FilterState";
 export default function UserHome() {
+  const { sortByAlphabet } = useContext(FilterContext);
+  const { filter, nameFilter, handleNameFilter } = useContext(FilterContext);
   const { cart, handleAddToCart, handleRemoveFromCart, medicines } =
     useContext(UserContext);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
+      medicines.sort((a, b) => {
+        if (filter === "Highest Price") {
+          return b.price - a.price;
+        } else {
+          return a.price - b.price;
+        }
+      });
+      if (sortByAlphabet) {
+        setLoading(true);
+        medicines.sort((a, b) => {
+          const nameA = a.name.toLowerCase();
+          const nameB = b.name.toLowerCase();
+          
+          switch(sortByAlphabet) {
+            case 'A to Z':
+              return nameA.localeCompare(nameB);
+            case 'Z to A':
+              return nameB.localeCompare(nameA);
+            default:
+              return 0;
+          }
+        });
+        setLoading(false);
+      }
     }, 1000);
-  }, [medicines]);
+  }, [medicines, sortByAlphabet]);
   return (
     <section className=" w-full bg-red-00 p-2 flex justify-center items-center">
       <article className="sm:p-3 h-full w-full rounded-xl shadow-inset-xl bg-gray-100 overflow-scroll flex justify-center items-start">
