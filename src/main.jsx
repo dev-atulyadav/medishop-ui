@@ -28,6 +28,7 @@ import DisplayVendors from "./components/Admin/DisplayVendors.jsx";
 import AddMedicine from "./components/Vendor/AddMedicine.jsx";
 import DisplayMedicine from "./components/Admin/DisplayMedicine.jsx";
 import ViewProductDetails from "./components/Customer/ViewProductDetails.jsx";
+import Order from "./components/Customer/Order.jsx";
 
 const router = createBrowserRouter([
   {
@@ -57,6 +58,10 @@ const router = createBrowserRouter([
       {
         path: "cart",
         element: <MyCart />,
+      },
+      {
+        path: "order",
+        element: <Order />,
       },
       {
         path: "my-profile",

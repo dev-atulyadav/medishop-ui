@@ -8,6 +8,7 @@ import { IoCartOutline } from "react-icons/io5";
 import { HiOutlineUserCircle } from "react-icons/hi2";
 import { MenuContext } from "../../context/menu/MenuState";
 import { Link } from "react-router-dom";
+import { BsFillCartCheckFill } from "react-icons/bs";
 
 export default function Header() {
   const { b, handleMenu } = useContext(MenuContext);
@@ -16,6 +17,7 @@ export default function Header() {
     { name: "Home", url: "/home", func: handleMenu, icon: <IoHomeOutline /> },
     { name: "About", url: "/about", func: handleMenu, icon: <GoInfo /> },
     { name: "Cart", url: "/cart", func: handleMenu, icon: <IoCartOutline /> },
+    { name: "Order", url: "/order", func: handleMenu, icon: <BsFillCartCheckFill /> },
     {
       name: user ? "User" : "Login",
       url: user ? "/my-profile" : "/auth/login",
