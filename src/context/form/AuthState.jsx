@@ -25,6 +25,7 @@ const AuthState = (props) => {
       if (response.status === 200) {
         toast.success("User logged in successfully");
         localStorage.setItem("user", JSON.stringify(response.data));
+        window.location.reload();
       } else {
         toast.error("Invalid email or password");
       }
@@ -33,6 +34,7 @@ const AuthState = (props) => {
   const handleLogout = () => {
     localStorage.removeItem("user");
     toast.success("User logged out successfully");
+    window.location.reload();
   };
   const validateInputs = (type, data) => {
     if (type === "email") {

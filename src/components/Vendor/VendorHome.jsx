@@ -1,20 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { Link, Navigate } from "react-router-dom";
-import { getAllMedicines } from "../../../lib/action";
+import { getAllMedicines, getAllOrdersOfVendor } from "../../../lib/action";
 
 const VendorHome = () => {
   const [vendor, setVendor] = useState(
     JSON.parse(localStorage.getItem("vendor"))
   );
   const [products, setProducts] = useState([]);
+  const [orders, setOrders] = useState([]);
   if (!vendor || vendor.vendorStatus === "inactive") {
     return <Navigate to="/vendor/login" />;
   }
   useEffect(() => {
     const fetchProducts = async () => {
       const response = await getAllMedicines();
+      const ordersResponse = await getAllOrdersOfVendor(vendor.id);
+      setOrders(ordersResponse.data);
       setProducts(response.data);
-      console.log(response);
     };
     fetchProducts();
   }, []);
@@ -38,7 +40,7 @@ const VendorHome = () => {
               </div>
               <div className="bg-green-50 p-4 rounded-md">
                 <p className="text-sm text-green-600">Total Sales</p>
-                <p className="text-2xl font-bold">0</p>
+                <p className="text-2xl font-bold">{orders.length}</p>
               </div>
             </div>
           </div>
@@ -55,7 +57,27 @@ const VendorHome = () => {
 
           <div className="bg-white p-6 rounded-lg shadow-md">
             <h2 className="text-xl font-semibold mb-4">Recent Orders</h2>
-            <p className="text-gray-500">No recent orders to display</p>
+            {orders.length > 0 ? (
+              <div className="flex justify-center items-start gap-2 flex-col">
+                {orders.map(
+                  (order, index) =>
+                    index < 3 && (
+                      <div key={order.id} className="mb-2">
+                        <p className="text-gray-600">
+                          <strong>Order ID:</strong> {order.orderId}
+                        </p>
+                      </div>
+                    )
+                )}
+                <Link to={"/vendor/view-orders"} className="self-end">
+                  <button className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition">
+                    View All Orders
+                  </button>
+                </Link>
+              </div>
+            ) : (
+              <p className="text-gray-500">No recent orders to display</p>
+            )}
           </div>
         </main>
 
