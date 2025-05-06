@@ -1,19 +1,27 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { FaRegHeart } from "react-icons/fa";
 import { HiOutlineExclamationCircle } from "react-icons/hi";
 import { TbShoppingCart } from "react-icons/tb";
 import { UserContext } from "../../context/user/UserState";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import { DotLoader } from "react-spinners";
 
 const ViewProductDetails = () => {
+  const [loading, setLoading] = useState(true);
   const { id } = useParams();
-  const { medicines } = useContext(UserContext);
+  const { medicines, handleAddToCart } = useContext(UserContext);
   const [quantity, setQuantity] = useState(1);
   const medicine = medicines.filter((item) => item.id == id)[0];
 
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 1000);
+  }, [medicine]);
+
   return (
     <section className="py-12 bg-gray-50 mt-20">
-      {medicine && (
+      {medicine && !loading ? (
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="lg:grid lg:grid-cols-2 lg:gap-x-8">
             {/* Product Image */}
@@ -41,34 +49,35 @@ const ViewProductDetails = () => {
                 <p className="mt-4 text-gray-600 leading-relaxed">
                   {medicine.description}
                 </p>
-              </div>
 
-              {/* Quantity Selector */}
-              <div className="mt-8">
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Quantity
-                </label>
-                <div className="flex items-center space-x-4">
-                  <input
-                    type="number"
-                    min="1"
-                    max={medicine.quantity}
+                {/* Quantity Selector */}
+                <div className="mt-8 flex items-center">
+                  <span className="text-gray-600 mr-2">Quantity:</span>
+                  <select
                     value={quantity}
                     onChange={(e) => setQuantity(parseInt(e.target.value))}
-                    className="w-20 rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
-                  />
-                  <span className="text-sm text-gray-500">
-                    {medicine.quantity} units available
-                  </span>
+                    className="px-4 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
+                  >
+                    {Array.from({ length: 10 }, (_, i) => i + 1).map((num) => (
+                      <option key={num} value={num}>
+                        {num}
+                      </option>
+                    ))}
+                  </select>
                 </div>
               </div>
-
               {/* Action Buttons */}
               <div className="mt-8 flex space-x-4">
-                <button className="flex-1 bg-blue-600 text-white px-6 py-3 rounded-md hover:bg-blue-700 transition-colors flex items-center justify-center">
+                <Link
+                  to="/cart"
+                  onClick={() => {
+                    handleAddToCart(medicine, quantity);
+                  }}
+                  className="flex-1 bg-blue-600 text-white px-6 py-3 rounded-md hover:bg-blue-700 transition-colors flex items-center justify-center"
+                >
                   <TbShoppingCart className="h-5 w-5 mr-2" />
                   Add to Cart
-                </button>
+                </Link>
                 <button className="flex-1 border border-gray-300 text-gray-700 px-6 py-3 rounded-md hover:bg-gray-50 transition-colors flex items-center justify-center">
                   <FaRegHeart className="h-5 w-5 mr-2" />
                   Add to Wishlist
@@ -105,6 +114,10 @@ const ViewProductDetails = () => {
               </div>
             </div>
           </div>
+        </div>
+      ) : (
+        <div className="w-screen flex justify-center items-center h-[50vh]">
+          <DotLoader color="gray" size={50} />
         </div>
       )}
     </section>

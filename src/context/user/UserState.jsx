@@ -159,7 +159,18 @@ export default function UserState(props) {
   };
   localStorage.setItem("cart", JSON.stringify(cart));
 
-  const handleRemoveFromCart = (medicine, quantity) => {
+  const handleRemoveFromCart = (medicine, quantity, isOrderPalced) => {
+    if (isOrderPalced) {
+      toast.success("Order Confirmed!", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+      });
+      setCart(cart.filter((item) => item.id !== medicine.id));
+      localStorage.setItem("cart", JSON.stringify(cart));
+      return;
+    }
     if (quantity > 1) {
       setCart(
         cart.map((item) =>

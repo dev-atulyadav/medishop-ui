@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../context/user/UserState";
 import { Link } from "react-router-dom";
+import { placeOrder } from "../../../lib/action";
 
 export default function MyCart() {
   const { cart, handleRemoveFromCart, handleAddToCart } =
@@ -62,8 +63,25 @@ export default function MyCart() {
                   </span>
                   <div className="flex gap-2 mt-2">
                     <button
+                      onClick={async (e) => {
+                        e.preventDefault();
+                       const response = await placeOrder(medicine);
+                       if (response.status === 200) {
+                        handleRemoveFromCart(medicine,"",true);
+                        setQuantity(1);
+                       }else{
+                        toast.error(response.message, {
+                          position: "top-right",
+                          autoClose: 5000,
+                          hideProgressBar: false,
+                          closeOnClick: true,
+                          pauseOnHover: true,
+                          draggable: true,
+                          progress: undefined,
+                        });
+                       }
+                      }}
                       className="px-3 py-1 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors"
-                      onClick={() => console.log("Confirm purchase")}
                     >
                       Confirm
                     </button>
