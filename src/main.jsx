@@ -21,8 +21,6 @@ import { CookiesProvider } from "react-cookie";
 import VendorHome from "./components/Vendor/VendorHome.jsx";
 import VendorLogin from "./components/Vendor/VendorLogin.jsx";
 import VendorSignup from "./components/Vendor/VendorSignup.jsx";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import AdminHome from "./components/Admin/AdminHome.jsx";
 import DisplayVendors from "./components/Admin/DisplayVendors.jsx";
 import AddMedicine from "./components/Vendor/AddMedicine.jsx";
@@ -122,7 +120,6 @@ ReactDOM.createRoot(document.getElementById("root")).render(
           <MenuState>
             <AuthState>
               <FilterState>
-                <ToastContainer />
                 <RouterProvider router={router} />
               </FilterState>
             </AuthState>

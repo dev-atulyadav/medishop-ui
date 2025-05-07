@@ -1,13 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { FaUsers, FaShoppingCart, FaStore } from "react-icons/fa";
 import { MdDashboard } from "react-icons/md";
-import { getAllMedicines, getAllVendors } from "../../../lib/action";
+import {
+  getAllMedicines,
+  getAllOrders,
+  getAllOrdersForAdmin,
+  getAllVendors,
+} from "../../../lib/action";
 import { Link, Navigate } from "react-router-dom";
 
 const AdminHome = () => {
   const admin = JSON.parse(localStorage.getItem("admin"));
   const [vendors, setVendors] = useState([]);
   const [medicines, setMedicines] = useState([]);
+  const [orders, setOrders] = useState([]);
 
   if (!admin) {
     return <Navigate to="/admin/login" />;
@@ -16,13 +22,15 @@ const AdminHome = () => {
     const fetchVendors = async () => {
       const vendors = await getAllVendors(admin.email);
       const medicines = await getAllMedicines();
+      const orders = await getAllOrdersForAdmin();
       setVendors(vendors.data);
       setMedicines(medicines.data);
+      setOrders(orders.data);
     };
     fetchVendors();
   }, []);
   return (
-    <section className="w-full min-h-screen p-6">
+    <section className="w-full min-h-screen p-6 mt-20">
       <div className="flex items-center gap-2 mb-8">
         <MdDashboard className="text-2xl" />
         <h1 className="text-2xl font-bold">Dashboard</h1>
@@ -53,16 +61,7 @@ const AdminHome = () => {
             <FaUsers className="text-3xl" />
           </div>
           <h3 className="text-gray-600 text-lg">Total Orders</h3>
-          <p className="text-3xl font-bold mt-2">1.2K</p>
-        </div>
-        <div className="bg-white rounded-lg shadow-md p-6">
-          <div
-            className={`bg-blue-500 w-12 h-12 rounded-full flex items-center justify-center text-white mb-4`}
-          >
-            <FaUsers className="text-3xl" />
-          </div>
-          <h3 className="text-gray-600 text-lg">Total Users</h3>
-          <p className="text-3xl font-bold mt-2">1.2K</p>
+          <p className="text-3xl font-bold mt-2">{orders.length}</p>
         </div>
         <Link
           to="/admin/review-medicine"

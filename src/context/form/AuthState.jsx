@@ -16,6 +16,7 @@ const AuthState = (props) => {
       if (response.status === 201) {
         toast.success("User registered successfully");
         localStorage.setItem("user", JSON.stringify(response.data));
+        windwow.location.reload();
       } else {
         toast.error("User already exists");
       }

@@ -24,11 +24,11 @@ export default function User() {
     fetchMedicines();
   }, []);
   return (
-    <div className="mt-20">
+    <div className="mt-20 w-full">
       <FilterBar />
       {!showFilter && <UserHome medicines={medicines} />}
       {showFilter && <FilterBox />}
-      <PageIndexing />
+      {/* <PageIndexing /> */}
     </div>
   );
 }

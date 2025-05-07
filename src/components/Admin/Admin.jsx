@@ -1,9 +1,11 @@
 import React from "react";
-import { Outlet } from "react-router-dom";
-import Section from "../Customer/Section";
-import Header from "../Header/Header";
-import Footer from "../Footer/Footer";
+import { Navigate, Outlet, useLocation } from "react-router-dom";
+
 export default function Admin() {
+  const pathname = useLocation().pathname;
+  if (pathname === "/admin") {
+    return <Navigate to="/admin/home" />;
+  }
   return (
     <>
       <Outlet />

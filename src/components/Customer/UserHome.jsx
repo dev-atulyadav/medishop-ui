@@ -25,11 +25,11 @@ export default function UserHome() {
         medicines.sort((a, b) => {
           const nameA = a.name.toLowerCase();
           const nameB = b.name.toLowerCase();
-          
-          switch(sortByAlphabet) {
-            case 'A to Z':
+
+          switch (sortByAlphabet) {
+            case "A to Z":
               return nameA.localeCompare(nameB);
-            case 'Z to A':
+            case "Z to A":
               return nameB.localeCompare(nameA);
             default:
               return 0;
@@ -41,21 +41,28 @@ export default function UserHome() {
   }, [medicines, sortByAlphabet]);
   return (
     <section className=" w-full bg-red-00 p-2 flex justify-center items-center">
-      <article className="sm:p-3 h-full w-full rounded-xl shadow-inset-xl bg-gray-100 overflow-scroll flex justify-center items-start">
-        <main className="sm:flex flex-wrap justify-center items-center h-full w-full">
+      <article className="sm:p-3 h-full w-full rounded-xl shadow-inset-xl bg-gray-100 flex justify-center items-start">
+        <main
+          className={`${
+            loading ? "flex justify-center items-center" : "grid"
+          } lg:grid-cols-4 2xl:grid-cols-5 sm:grid-cols-2 md:grid-cols-3 place-items-center w-full`}
+        >
           {loading ? (
             <h1 className="text-2xl font-bold flex justify-center items-center h-[50vh] w-full">
               <DotLoader color="gray" size={50} />
             </h1>
           ) : medicines?.length > 0 ? (
-            medicines.map((medicine) => (
-              <ProductBox
-                key={medicine.id}
-                medicine={medicine}
-                handleAddToCart={handleAddToCart}
-                handleRemoveFromCart={handleRemoveFromCart}
-              />
-            ))
+            medicines.map(
+              (medicine) =>
+                medicine.status === "Approved" && (
+                  <ProductBox
+                    key={medicine.id}
+                    medicine={medicine}
+                    handleAddToCart={handleAddToCart}
+                    handleRemoveFromCart={handleRemoveFromCart}
+                  />
+                )
+            )
           ) : (
             <h1 className="text-2xl font-bold flex justify-center items-center h-[50vh] w-full">
               No medicines found

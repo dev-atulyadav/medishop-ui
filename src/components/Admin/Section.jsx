@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { Link, Navigate } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import UserData from "./UserData";
 
 export default function Section() {

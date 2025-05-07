@@ -1,7 +1,4 @@
 import React, { createContext, useState } from "react";
-import { Navigate } from "react-router-dom";
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 
 export const HomeContext = createContext();
 export default function HomeState({ children }) {

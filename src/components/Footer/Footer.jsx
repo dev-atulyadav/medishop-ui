@@ -6,13 +6,14 @@ import { Link } from "react-router-dom";
 import Icon from "../../assets/images/icon.png";
 
 export default function Footer() {
+  const vendor = JSON.parse(localStorage.getItem("vendor"));
   const [link, setLink] = useState([
     { name: "instagram", icon: <FaInstagram />, url: "" },
     { name: "meta", icon: <FaMeta />, url: "" },
     { name: "x", icon: <RiTwitterXFill />, url: "" },
   ]);
   return (
-    <footer className="bg-slate-600 text-white p-6 flex flex-col gap-4 justify-center items-center mt-6">
+    <footer className="w-full bg-slate-600 text-white p-6 flex flex-col gap-4 justify-center items-center mt-6">
       <div className="text-lg w-full uppercase font-bold flex flex-col items-start sm:items-center sm:flex-row justify-between gap-6">
         <Link
           to="/"
@@ -36,7 +37,7 @@ export default function Footer() {
         <Link to="/home">Home</Link>
         <Link to="/about">About</Link>
         <Link to="/service">Service</Link>
-        <Link to="/vendor/login">Vendor</Link>
+        <Link to={!vendor?"/vendor/login":"/vendor"}>Vendor</Link>
       </div>
       <small className="font-semibold">© Copyright 2024-25</small>
     </footer>

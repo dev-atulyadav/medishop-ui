@@ -7,19 +7,19 @@ const Order = () => {
   const [orders, setOrders] = useState([]);
   const getAllOrdersByUserId = async (userId) => {
     const response = await getAllOrders(userId);
-    setOrders(response.data);
+    setOrders(response.data.reverse());
   };
   useEffect(() => {
     if (user) {
       getAllOrdersByUserId(user.id);
       console.log(orders);
     } else {
-      window.location.href = "/login";
+      window.location.href = "/auth/login";
     }
   }, []);
   console.log(orders);
   return (
-    <div className="container mx-auto mt-20 h-screen px-4 py-8">
+    <div className="my-20 w-full h-screen px-4 py-8">
       <h2 className="text-2xl font-bold mb-6">My Orders</h2>
       <div className="overflow-x-auto">
         <table className="min-w-full bg-white shadow-md rounded-lg">

@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { HomeContext } from "../../context/home/HomeState";
 import TopSelling from "./TopSelling";
 import TopProducts from "./TopProducts";
@@ -8,7 +9,6 @@ import { Link } from "react-router-dom";
 export default function Section() {
   const user = JSON.parse(localStorage.getItem("user"));
   const { data } = useContext(HomeContext);
-  console.log(user);
   return (
     <>
       <section
