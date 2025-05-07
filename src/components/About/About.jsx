@@ -4,7 +4,7 @@ import ShortDetails from "../Customer/ShortDetails";
 export default function About() {
   let details = [
     {
-      heading: "Why to choose MediShop?",
+      heading: "Why to choose MediCare AI?",
       para: "We aim to provide best medicine to our consumer. You will find all medicines here from all verfied sellers. We review our sellers on daily basis to ensure that every product which is getting added on our platform. This helps us to verfiy that every product is safe to consume and under in expiry dates for our consumer.",
     },
     {

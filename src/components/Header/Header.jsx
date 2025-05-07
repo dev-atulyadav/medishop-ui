@@ -35,10 +35,10 @@ export default function Header() {
     <header className=" bg-slate-600 flex justify-between items-center px-6 py-2 fixed w-full top-0 z-10">
       <Link
         to="/"
-        className="flex justify-center items-center text-xl sm:text-3xl uppercase font-bold gap-2 text-white cursor-pointer"
+        className="flex justify-center items-center text-xl sm:text-3xl font-bold gap-2 text-white cursor-pointer"
       >
         <img src={Icon} className="h-14 sm:h-16" alt="" />
-        <h2>MediShop</h2>
+        <h2>MediCare AI</h2>
       </Link>
       <button
         onClick={handleMenu}

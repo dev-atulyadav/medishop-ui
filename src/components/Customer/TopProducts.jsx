@@ -37,9 +37,9 @@ export default function TopProducts() {
       </main>
       <main className="w-full bg-gray-200 p-4 flex justify-center md:justify-between items-center gap-3 rounded-xl shadow-inset-3xl flex-wrap">
         {catogeries.map((value, index) => (
-          <Link key={index} to={value.path}>
+          <div key={index}>
             <img src={value.img} className="h-32 rounded-xl hover:scale-105 transition-all" />
-          </Link>
+          </div>
         ))}
       </main>
     </section>

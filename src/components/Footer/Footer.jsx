@@ -17,10 +17,10 @@ export default function Footer() {
       <div className="text-lg w-full uppercase font-bold flex flex-col items-start sm:items-center sm:flex-row justify-between gap-6">
         <Link
           to="/"
-          className="flex justify-center items-center text-2xl uppercase font-bold gap-2 text-white cursor-pointer"
+          className="flex justify-center items-center text-2xl normal-case font-bold gap-2 text-white cursor-pointer"
         >
           <img src={Icon} className="h-12" alt="" />
-          <h2>MediShop</h2>
+          <h2>MediCare AI</h2>
         </Link>
         <span className="flex flex-col gap-2">
           <h3>Get Connected with us.</h3>

@@ -119,6 +119,7 @@ export default function Signup() {
                 toast.error("Invalid Password!");
               } else {
                 handleForms(userData, "register");
+                window.location.reload();
               }
             }}
             className="px-7 py-2.5 bg-blue-400 uppercase  hover:bg-blue-500 rounded-xl mt-4"
