@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { FaUsers, FaShoppingCart, FaStore } from "react-icons/fa";
 import { MdDashboard } from "react-icons/md";
 import {
+  getAllCustomers,
   getAllMedicines,
   getAllOrders,
   getAllOrdersForAdmin,
@@ -14,6 +15,7 @@ const AdminHome = () => {
   const [vendors, setVendors] = useState([]);
   const [medicines, setMedicines] = useState([]);
   const [orders, setOrders] = useState([]);
+  const [users, setUsers] = useState([]);
 
   if (!admin) {
     return <Navigate to="/admin/login" />;
@@ -23,6 +25,8 @@ const AdminHome = () => {
       const vendors = await getAllVendors(admin.email);
       const medicines = await getAllMedicines();
       const orders = await getAllOrdersForAdmin();
+      const users = await getAllCustomers(admin.email);
+      setUsers(users.data);
       setVendors(vendors.data);
       setMedicines(medicines.data);
       setOrders(orders.data);
@@ -36,15 +40,15 @@ const AdminHome = () => {
         <h1 className="text-2xl font-bold">Dashboard</h1>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <div className="bg-white rounded-lg shadow-md p-6">
+        <Link to="/admin/users" className="bg-white rounded-lg shadow-md p-6">
           <div
             className={`bg-blue-500 w-12 h-12 rounded-full flex items-center justify-center text-white mb-4`}
           >
             <FaUsers className="text-3xl" />
           </div>
           <h3 className="text-gray-600 text-lg">Total Users</h3>
-          <p className="text-3xl font-bold mt-2">1.2K</p>
-        </div>
+          <p className="text-3xl font-bold mt-2">{users.length}</p>
+        </Link>
         <Link to="/admin/vendors" className="bg-white rounded-lg shadow-md p-6">
           <div
             className={`bg-blue-500 w-12 h-12 rounded-full flex items-center justify-center text-white mb-4`}
@@ -54,7 +58,7 @@ const AdminHome = () => {
           <h3 className="text-gray-600 text-lg">Total Vendors</h3>
           <p className="text-3xl font-bold mt-2">{vendors.length}</p>
         </Link>
-        <div className="bg-white rounded-lg shadow-md p-6">
+        <Link to="/admin/orders" className="bg-white rounded-lg shadow-md p-6">
           <div
             className={`bg-blue-500 w-12 h-12 rounded-full flex items-center justify-center text-white mb-4`}
           >
@@ -62,7 +66,7 @@ const AdminHome = () => {
           </div>
           <h3 className="text-gray-600 text-lg">Total Orders</h3>
           <p className="text-3xl font-bold mt-2">{orders.length}</p>
-        </div>
+        </Link>
         <Link
           to="/admin/review-medicine"
           className="bg-white rounded-lg shadow-md p-6"

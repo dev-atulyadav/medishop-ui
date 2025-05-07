@@ -28,6 +28,8 @@ import DisplayMedicine from "./components/Admin/DisplayMedicine.jsx";
 import ViewProductDetails from "./components/Customer/ViewProductDetails.jsx";
 import Order from "./components/Customer/Order.jsx";
 import ViewOrders from "./components/Vendor/ViewOrders.jsx";
+import DisplayUsers from "./components/Admin/DsiplayUsers.jsx";
+import DisplayOrders from "./components/Admin/DisplayOrders.jsx";
 
 const router = createBrowserRouter([
   {
@@ -99,8 +101,16 @@ const router = createBrowserRouter([
             element: <AdminHome />,
           },
           {
+            path: "users",
+            element: <DisplayUsers />,
+          },
+          {
             path: "vendors",
             element: <DisplayVendors />,
+          },
+          {
+            path: "orders",
+            element: <DisplayOrders />,
           },
           {
             path: "review-medicine",
